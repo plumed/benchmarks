@@ -1,0 +1,21 @@
+x1: GROUP ATOMS=1
+x2: GROUP ATOMS=1600
+x3: GROUP ATOMS=2600
+x4: GROUP ATOMS=1000
+y1: GROUP ATOMS=100
+y2: GROUP ATOMS=1500
+y3: GROUP ATOMS=2700
+y4: GROUP ATOMS=900
+
+# Definition of the distance
+d1: DISTANCE ATOMS=x1,x2
+
+# Definition of the dihedrals for protein orientation
+tor1: TORSION ATOMS=x1,x2,x3,x4
+tor2: TORSION ATOMS=y1,y2,y3,y4
+
+# Printing
+PRINT STRIDE=10000 ARG=d1,tor1,tor2 FILE=data
+
+# Restraints ...
+RESTRAINT ARG=d1,tor1,tor2 AT=7.20,1.777,1.777 KAPPA=1000.0,300.0,300.0 LABEL=restraint
